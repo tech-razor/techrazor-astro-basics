@@ -1,0 +1,30 @@
+---
+interface Props {
+  userName: string;
+  isAdminUser: boolean;
+  adminPanelTitle?: string;
+}
+
+const {
+  userName,
+  isAdminUser,
+  adminPanelTitle = 'Admin Control Panel'
+} = Astro.props;
+---
+
+<p>Welcome {userName}</p>
+{
+  isAdminUser && (
+    <section class="admin-panel">
+      <h3>{adminPanelTitle}</h3>
+      <p>Admin functionality goes here</p>
+    </section>
+  )
+}
+
+<style>
+  .admin-panel {
+    border: 2px solid #800000;
+    padding: 1rem;
+  }
+</style>

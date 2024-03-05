@@ -1,16 +1,26 @@
 ---
+import Layout from '../layouts/Layout.astro';
+import UserPanel from '../components/UserPanel.astro';
 
+// Hard-coded values for this simple example but API calls can be made in the script section
+const pages = ['Home', 'Blog', 'About us', 'Contact us'];
+
+// Hard-coded User object but we could retrieve a user session from
+//   our Authentication provider, decode a JWT or read cookies
+const currentUser = {
+  name: 'John Doe',
+  isAdmin: true
+};
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
-  </head>
-  <body>
-    <h1>Astro</h1>
-  </body>
-</html>
+<Layout pageTitle="Home page">
+  <h1>Astro</h1>
+  <button>Click me</button>
+  <ul>
+    {pages.map((page) => <li>{page}</li>)}
+  </ul>
+  <UserPanel userName={currentUser.name} isAdminUser={currentUser.isAdmin} />
+</Layout>
+
+<script src="../scripts/index"></script>
+<script is:inline src="/external-script.js" defer></script>

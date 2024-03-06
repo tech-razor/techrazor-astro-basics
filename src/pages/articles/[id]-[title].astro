@@ -1,0 +1,36 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+export const getStaticPaths = () => {
+  // Pretend articles are fetched from a backend database
+  const articles = [
+    {
+      id: 1,
+      title: 'Learning JavaScript',
+      slug: 'learning-javascript',
+      content: 'This is an article covering the basics of JavaScript'
+    },
+    {
+      id: 2,
+      title: 'The basics of Python',
+      slug: 'the-basics-of-python',
+      content: 'Python is a dynamically-typed programmng language'
+    }
+  ];
+
+  return articles.map((article) => ({
+    params: { id: article.id, title: article.slug },
+    props: { article }
+  }));
+};
+
+const { id, title } = Astro.params;
+const { article } = Astro.props;
+
+// We could make an API call to fetch an article based on the value of the `id` parameter
+---
+
+<Layout pageTitle={article.title}>
+  <h1>{`${id}-${title}`}</h1>
+  <p>{article.content}</p>
+</Layout>

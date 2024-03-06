@@ -4,9 +4,12 @@ import type { JSX } from 'astro/jsx-runtime';
 interface Props {
   pageTitle: string;
   children: JSX.Element;
+  frontmatter?: {
+    title: string;
+  };
 }
 
-const { pageTitle } = Astro.props;
+const { pageTitle, frontmatter } = Astro.props;
 ---
 
 <html lang="en">
@@ -15,7 +18,7 @@ const { pageTitle } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>{pageTitle}</title>
+    <title>{pageTitle || frontmatter?.title}</title>
   </head>
   <body>
     <slot />

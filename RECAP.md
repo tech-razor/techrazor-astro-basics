@@ -32,3 +32,7 @@
     adminPanelTitle?: string;
   }
   ```
+
+- The `<slot />` element is a placeholder for HTML content.
+- By default, child elements of a component will be rendered in place of the `<slot />`. The `Layout` component in the `src/layouts` folder is an example and it used in the `src/pages/index.astro` page.
+- The `<slot />` element inside `Layout.astro` is substituted by the child elements within the `Layout` component on the `index` page.
